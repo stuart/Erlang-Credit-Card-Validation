@@ -1,10 +1,15 @@
 -module(credit_card).
 -export([is_valid/1, type/1]).
--include("credit_card.hrl").
 
+%% Returns a boolean value of wether the card is valid or not.
 is_valid(N) ->
   N2 = lists:reverse(list_to_integers(N)),
   sum_digits(N2) rem 10 =:= 0.
+
+%% Returns an atom describing the type of the card
+%% Possible outputs are: amex, visa, mastercard, discover, unknown
+type(N) ->
+  type_(N, string:len(N)). 
 
 sum_digits(N) ->
   sum_digits(N,0).
@@ -26,9 +31,7 @@ digital_root(N) ->
 list_to_integers(N) ->
   lists:map(fun(E) -> list_to_integer([E]) end, N).
 
-type(N) ->
-  type_(N, string:len(N)). 
-  
+
 %% 34* or 37*
 type_([51|[Second|_]], Length) when Length =:= 15, Second =:= 52; Second =:= 55 ->
   amex;
@@ -46,5 +49,5 @@ type_([54|[48|[49|[49|_]]]], Length) when Length =:= 16 ->
   discover; 
   
 type_(_, _) ->
-  invalid.
+  unknown.
   
