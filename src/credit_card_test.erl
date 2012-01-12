@@ -5,7 +5,7 @@ credit_card_valid_number_test() ->
   lists:map(fun(N) -> ?assert(credit_card:is_valid(N)) end, valid_numbers()).
 
 credit_card_invalid_number_test() ->
-    lists:map(fun(N) -> ?assertNot(credit_card:is_valid(N)) end, invalid_numbers()).
+  lists:map(fun(N) -> ?assertNot(credit_card:is_valid(N)) end, invalid_numbers()).
 
 amex_test() ->
   ?assertEqual(amex, credit_card:type("378282246310005")),

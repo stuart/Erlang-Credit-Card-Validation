@@ -1,0 +1,19 @@
+Credit Card Validation
+
+An Erlang module for testing credit card numbers.
+
+To run the tests use `make test`
+
+The main.escript simply takes a list of credit card numbers as
+arguments and outputs the results of the checks.
+
+The credit card module exports two functions:
+  is_valid/1
+    This takes the credit card number as a string and returns
+    true or false depending on the number's validity.
+    
+  type/1
+    This takes the credit card number as a string and returns
+    an atom describing the credit card's type.
+    Possible values are: visa, mastercard, amex, discover and unknown.
+

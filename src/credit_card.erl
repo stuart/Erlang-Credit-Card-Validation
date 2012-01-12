@@ -1,7 +1,7 @@
 -module(credit_card).
 -export([is_valid/1, type/1]).
 
-%% Returns a boolean value of wether the card is valid or not.
+%% Returns a boolean value of whether the card is valid or not.
 is_valid(N) ->
   N2 = lists:reverse(list_to_integers(N)),
   sum_digits(N2) rem 10 =:= 0.
@@ -47,7 +47,7 @@ type_([53|[Second|_]], Length) when Length =:= 16, Second >= 49, Second =< 53 ->
 %% 6011*
 type_([54|[48|[49|[49|_]]]], Length) when Length =:= 16 ->
   discover; 
-  
+
 type_(_, _) ->
   unknown.
   
