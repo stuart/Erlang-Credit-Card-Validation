@@ -4,8 +4,12 @@ An Erlang module for testing credit card numbers.
 
 To run the tests use `make test`
 
-The main.escript simply takes a list of credit card numbers as
-arguments and outputs the results of the checks.
+To run the QuickCheck tests use `make quickcheck`
+
+The main.escript either takes a list of credit card numbers as
+arguments and outputs the results of the checks or if called with
+no arguments, allows you to enter one or more numbers in the console
+to be tested or pipe the output from another process to it.
 
 The credit card module exports two functions:
   is_valid/1
@@ -16,4 +20,12 @@ The credit card module exports two functions:
     This takes the credit card number as a string and returns
     an atom describing the credit card's type.
     Possible values are: visa, mastercard, amex, discover and unknown.
+
+You can also run a credit card validation server. The configuration
+can be found in config/server_config.erl
+To start the server use: `make server`
+The default validation url is: http://localhost:8800/credit_card_validation_server:validate?XXXXXXXXXXXXXXX
+Where the param XXXXXXXXXXXXXX is the credit card number to be validated.
+You can change the host, port and path in the config file.
+
 

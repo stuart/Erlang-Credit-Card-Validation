@@ -1,5 +1,6 @@
 -module(credit_card_test).
 -include_lib("eunit/include/eunit.hrl").
+-author({author, "Stuart Coyle","stuart.coyle@gmail.com"}).
 
 credit_card_valid_number_test() ->
   lists:map(fun(N) -> ?assert(credit_card:is_valid(N)) end, valid_numbers()).

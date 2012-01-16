@@ -1,5 +1,6 @@
 -module(credit_card).
 -export([is_valid/1, type/1]).
+-author({author, "Stuart Coyle","stuart.coyle@gmail.com"}).
 
 %% Returns a boolean value of whether the card is valid or not.
 is_valid(N) ->
@@ -33,19 +34,19 @@ list_to_integers(N) ->
 
 
 %% 34* or 37*
-type_([51|[Second|_]], Length) when Length =:= 15, Second =:= 52; Second =:= 55 ->
+type_([$3|[Second|_]], Length) when Length =:= 15, Second =:= $4; Second =:= $7 ->
   amex;
 
 %% 4*
-type_([52|_],Length) when Length =:= 13; Length =:= 16 ->
+type_([$4|_],Length) when Length =:= 13; Length =:= 16 ->
   visa;
 
 %% 51-55*
-type_([53|[Second|_]], Length) when Length =:= 16, Second >= 49, Second =< 53 ->
+type_([$5|[Second|_]], Length) when Length =:= 16, Second >= $1, Second =< $5 ->
   mastercard;
 
 %% 6011*
-type_([54|[48|[49|[49|_]]]], Length) when Length =:= 16 ->
+type_([$6|[$0|[$1|[$1|_]]]], Length) when Length =:= 16 ->
   discover; 
 
 type_(_, _) ->
